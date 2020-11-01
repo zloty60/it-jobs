@@ -27,5 +27,3 @@ export function deleteJobOffer(jobOfferId) {
     payload: jobOfferId,
   };
 }
-
-

@@ -3,6 +3,7 @@ import { Grid, Button, Card, CardContent } from "@material-ui/core";
 
 import CategoryModal from "./CategoryModal";
 import SortOptions from "./SortOptions";
+import ExperienceOptions from "./ExperienceOptions";
 
 export default function FilterJobsMobile({ categoryValue }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,12 @@ export default function FilterJobsMobile({ categoryValue }) {
       <CardContent>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={6}>
+            <SortOptions />
+          </Grid>
+          <Grid item xs={6}>
+            <ExperienceOptions />
+          </Grid>
+          <Grid item xs={12}>
             <Button
               color="primary"
               fullWidth
@@ -25,9 +32,6 @@ export default function FilterJobsMobile({ categoryValue }) {
               setIsOpen={setIsOpen}
               categoryValue={categoryValue}
             />
-          </Grid>
-          <Grid item xs={6}>
-            <SortOptions />
           </Grid>
         </Grid>
       </CardContent>

@@ -5,10 +5,15 @@ import { Link as RouterLink } from "react-router-dom";
 
 import NavbarSpace from "./../navbar/NavbarSpace";
 import SortOptions from "./SortOptions";
+import ExperienceOptions from "./ExperienceOptions";
 import { categoryOptions } from "./../../data/selectOptions";
+import useExperienceQuery from "./../../hooks/useExperienceQuery";
+import useSortQuery from "./../../hooks/useSortQuery";
 
 export default function FilterJobsDesktop({ categoryValue }) {
   const classes = useStyles();
+  const sortQuery = useSortQuery();
+  const experienceQuery =  useExperienceQuery();
 
   return (
     <nav className={classes.drawer}>
@@ -24,6 +29,8 @@ export default function FilterJobsDesktop({ categoryValue }) {
           <CardContent>
             <SortOptions />
             <Box marginBottom={4} />
+            <ExperienceOptions />
+            <Box marginBottom={4} />
             <Grid container spacing={3} justify="space-between">
               {categoryOptions.map((el) => (
                 <Grid key={el.category} item xs={6}>
@@ -34,7 +41,7 @@ export default function FilterJobsDesktop({ categoryValue }) {
                       el.category === categoryValue ? "contained" : "outlined"
                     }
                     color="primary"
-                    to={el.url}
+                    to={`${el.url}?sort=${sortQuery.sortSelectValue}&experience=${experienceQuery}`}
                   >
                     {el.displaTxt}
                   </Button>

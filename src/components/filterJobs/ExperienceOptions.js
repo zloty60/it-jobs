@@ -2,38 +2,39 @@ import React, { useState } from "react";
 import { TextField, MenuItem } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
 
+import {experienceOptions} from "./../../data/selectOptions";
 import useSortQuery from "./../../hooks/useSortQuery";
 import useExperienceQuery from "./../../hooks/useExperienceQuery";
-import { sortOptions } from "./../../data/selectOptions";
 
 
-export default function SortOptions() {
-  const sortQuery = useSortQuery();
+export default function ExperienceOptions() {
   const location = useLocation();
   const currentUrl = location.pathname;
   const experienceQuery = useExperienceQuery();
-  const [value, setValue] = useState(sortQuery.sortSelectValue);
-
+  const sortQuery = useSortQuery();
+  const [value, setValue] = useState(experienceQuery);
+  
   return (
     <TextField
       fullWidth
-      id="sort-select"
+      id="experience-select"
       select
-      label="Sortuj według"
+      label="doświadczenie"
       value={value}
       onChange={(e) => setValue(e.target.value)}
       variant="outlined"
     >
-      {sortOptions.map((option) => (
-        <MenuItem
-          component={Link}
-          to={`${currentUrl}?${option.url}&experience=${experienceQuery}`}
-          key={option.value}
-          value={option.value}
-        >
-          {option.name}
-        </MenuItem>
-      ))}
+{experienceOptions.map((option) => (
+  <MenuItem
+    component={Link}
+    to={`${currentUrl}?sort=${sortQuery.sortSelectValue}&${option.url}`} 
+    key={option.value}
+    value={option.value}
+  >
+    {option.name}
+  </MenuItem>
+))}
     </TextField>
   );
 }
+

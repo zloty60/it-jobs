@@ -10,7 +10,8 @@ import FilterJobsDesktop from "./../components/filterJobs/FilterJobsDesktop";
 import JobCard from "./../components/jobBoards/JobCard";
 import JobCardLoaderGenerator from "./../components/jobBoards/JobCardLoaderGenerator";
 import AppContainer from "./../components/common/AppContainer";
-import useCheckQuery from "./../hooks/useCheckQuery";
+import useSortQuery from "./../hooks/useSortQuery";
+import useExperienceQuery from "./../hooks/useExperienceQuery";
 import useCheckCategoryOptions from "./../hooks/useCheckCategoryOptions";
 import FilterJobsMobile from "./../components/filterJobs/FilterJobsMobile";
 import ErrorAlert from "./../components/common/ErrorAlert";
@@ -19,11 +20,12 @@ export default function RootView() {
   const dispatch = useDispatch();
   const { isLoading, isError } = useSelector((state) => state.async);
   const { jobOffers } = useSelector((state) => state.jobOffers);
-  const sortQuery = useCheckQuery();
+  const sortQuery = useSortQuery();
   const categoryValue = useCheckCategoryOptions();
+  const experienceValue = useExperienceQuery();  
 
   useFirestoreCollection({   
-    query: () => listenToJobOffersFromFirestore(categoryValue, sortQuery),
+    query: () => listenToJobOffersFromFirestore(categoryValue, sortQuery,experienceValue),
     data: (jobOffers) => dispatch(listenToJobOffers(jobOffers)),
     deps: [dispatch, categoryValue],
   });

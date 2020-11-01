@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-export default function useCheckQuery() {
+export default function useSortQuery() {
   let location = useLocation();
   const query = new URLSearchParams(location.search);
   const type = query.get("sort");
@@ -22,7 +22,7 @@ export default function useCheckQuery() {
       return {
         sortType: "date",
         direction: "desc",
-        sortSelectValue: "default",
+        sortSelectValue: "the-latest",
       };
   }
 }

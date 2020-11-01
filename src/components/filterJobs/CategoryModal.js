@@ -15,8 +15,12 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Link as RouterLink } from "react-router-dom";
 
 import { categoryOptions } from "./../../data/selectOptions";
+import useExperienceQuery from "./../../hooks/useExperienceQuery";
+import useSortQuery from "./../../hooks/useSortQuery";
 
 export default function CategoryModal({ isOpen, setIsOpen, categoryValue }) {
+  const sortQuery = useSortQuery();
+  const experienceQuery =  useExperienceQuery();
   return (
     <Dialog
       fullScreen
@@ -50,7 +54,7 @@ export default function CategoryModal({ isOpen, setIsOpen, categoryValue }) {
                     el.category === categoryValue ? "contained" : "outlined"
                   }
                   color="primary"
-                  to={el.url}
+                  to={`${el.url}?sort=${sortQuery.sortSelectValue}&experience=${experienceQuery}`}
                 >
                   {el.displaTxt}
                 </Button>

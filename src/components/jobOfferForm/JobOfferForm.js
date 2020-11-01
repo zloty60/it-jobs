@@ -16,7 +16,7 @@ import AppContainer from "./../common/AppContainer";
 import SubmittingLoader from "./../forms/SubmittingLoader";
 import FormWrapper from "./../forms/FormWrapper";
 import {
-  experienceOptions,
+  experienceOptionsForm,
   categoryOptionsOfferForm,
 } from "./../../data/selectOptions";
 import NotificationForm from "./NotificationForm";
@@ -147,7 +147,7 @@ export default function JobOfferForm({selectedJobOffer,offerId})  {
                       : false
                   }
                 >
-                  {experienceOptions.map((option) => (
+                  {experienceOptionsForm.map((option) => (
                     <MenuItem key={option} value={option}>
                       {option}
                     </MenuItem>

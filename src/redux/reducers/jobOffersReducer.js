@@ -1,7 +1,7 @@
 import { jobOffersActions } from "./../../data/actionTypesConstants";
 
 const initialState = {
-  jobOffers: []
+  jobOffers: [],
 };
 
 const jobOffersReducer = (state = initialState, action) => {
@@ -35,11 +35,11 @@ const jobOffersReducer = (state = initialState, action) => {
           action.payload,
         ],
       };
-    case jobOffersActions.GET_LAST_JOB_OFFER:
-      return {
-        ...state,
-        lastjobOffer:action.payload
-      }  
+    // case jobOffersActions.GET_LAST_JOB_OFFER:
+    //   return {
+    //     ...state,
+    //     lastjobOffer:action.payload
+    //   }   
     default:
       return state;
   }

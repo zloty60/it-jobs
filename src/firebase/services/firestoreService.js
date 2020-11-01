@@ -12,16 +12,26 @@ export function dataFromSnapshot(snapshot) {
   };
 }
 
-export function listenToJobOffersFromFirestore(category, sort, ) {
+export function listenToJobOffersFromFirestore(category, sort,experience="all" ) {
   let jobOffersRef = db
     .collection("jobOffers")
     .orderBy(sort.sortType, sort.direction);
-  if (category === "all") {
-    return jobOffersRef;
+
+  if(experience === "all") {
+    if (category === "all") {
+      return jobOffersRef;
+    } else {
+      return jobOffersRef.where("category", "==", category);
+    }
   } else {
-    return jobOffersRef.where("category", "==", category);
+    if (category === "all") {
+      return jobOffersRef.where("experienceLevel", "==", experience);
+    } else {
+      return jobOffersRef.where("category", "==", category).where("experienceLevel", "==", experience );
+    }
   }
 }
+
 
 export function listenToJobOfferFromFirestore(jobOfferId) {
   return db.collection("jobOffers").doc(jobOfferId);
